@@ -1,0 +1,15 @@
+--- a/Sources/benchm.cpp	2014-01-03 14:03:47.000000000 +0100
++++ b/Sources/benchm.cpp	2017-06-11 12:12:30.673437343 +0200
+@@ -100,8 +100,10 @@
+ 
+ 		set<int>::iterator itb=E[u].begin();
+ 	
+-		while (itb!=E[u].end())
+-			out1<<u+1<<"\t"<<*(itb++)+1<<"\t"<<neigh_weigh[u][*(itb)]<<endl;
++		while (itb!=E[u].end()) {
++			out1<<u+1<<"\t"<<*(itb)+1<<"\t"<<neigh_weigh[u][*(itb)]<<endl;
++			++itb;
++		}
+ 		
+ 		
+ 
