@@ -44,3 +44,7 @@ mkdir plots_lfr-weighted
 
 ./time_table.py output_fb-dorm/ fb_times.tex
 ./time_table.py output_lfr-ol-uw/ lfr-ol-uw_times.tex
+
+#Create summary table of all algorithms
+./summary_table.py
+./summary_table_plot.py
