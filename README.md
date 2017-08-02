@@ -39,9 +39,10 @@ plots_lfr-weighted/5000-big-0.8_F1-Score - seed_plain_avg_nolegend.pgf
 plots_lfr-weighted/5000-big-0.8_F1-Score - seed_clique_avg_nolegend.pgf
 plots_fb-dorm/F1-Score - seed_plain_avg.pdf
 plots_fb-dorm/F1-Score - seed_clique_avg.pdf
+summary.pdf
 ```
 
-All plots are generated as PGF for direct inclusion into LaTeX and as PDF for direct viewing or inclusion where PGF does not accurately reproduce the PDF (for the plots on the 100 Facebook networks, the labels on the x-axis are unfortunately not properly aligned when using PGF).
+All plots are generated as PGF for direct inclusion into LaTeX and as PDF for direct viewing or inclusion where PGF does not accurately reproduce the PDF (for the plots on the 100 Facebook networks and the summary plot, the labels on the x-axis are unfortunately not properly aligned when using PGF).
 
 Further, the code also generates two tables that are used in our paper:
 
