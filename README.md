@@ -8,7 +8,7 @@ The scripts generate or convert input graphs, execute the algorithms, run the ev
 The main script to execute everything is `execute_everything.sh`.
 Before you execute this, however, you need to ensure a couple of points:
 
- * NetworKit from https://github.com/michitux/networkit/tree/upstream/SCD must be installed such that it can be imported in Python scripts
+ * NetworKit from https://github.com/kit-algo/LCD-cliques-networkit must be installed such that it can be imported in Python scripts
  * The Facebook graphs from https://archive.org/details/oxford-2005-facebook-matrix must be available in some directory, the path to it can be defined in `execute_everything.sh`.
  * The `binary_networks` and `weighted_networks` LFR implementations from https://sites.google.com/site/andrealancichinetti/files must be compiled and their path entered in `gen_ol_lfr.py` and `gen_weighted_lfr.py`. Note that as of 2017-06-20, the weighted-networks implementation has a bug in the code (which might only exist under certain compilers, but on our systems it definitely is broken) concerning the output of the graph. To fix it, simply apply the patch in `weighted_networks.patch` (e.g. using `patch -p1 < weighted_networks.patch`).
  * The Infomap implementation from http://www.mapequation.org/code.html needs to be installed and the path to it needs to be entered in `execute_algorithms.py`.
