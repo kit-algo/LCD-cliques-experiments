@@ -1,7 +1,10 @@
 Experimental Evaluation of "Local Community Detection based on Small Cliques"
 =============================================================================
 
-These are the scripts used for the experimental evaluation of the paper "Local Community Detection based on Small Cliques" by Michael Hamann, Eike Röhrs and Dorothea Wagner (the paper will be available soon).
+These are the scripts used for the experimental evaluation of the (open access) paper
+
+Hamann, Michael; Röhrs, Eike; Wagner, Dorothea. 2017. "[Local Community Detection based on Small Cliques](http://www.mdpi.com/1999-4893/10/3/90)." Algorithms 10, no. 3: 90.
+
 To make it possible to reproduce the results presented in our paper we provide all scripts and the full implementation used.
 
 The scripts generate or convert input graphs, execute the algorithms, run the evaluation and generate plots.
