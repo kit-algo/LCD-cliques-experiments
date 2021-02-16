@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 
-from networkit import generators, structures, graphio, setSeed
 import random
 import pickle
 import argparse
+from networkit import generators, structures, graphio, setSeed
 
 # LFR Generator
 numSeedNodes = 20 #10
@@ -13,7 +13,7 @@ degreeRange = [20, 50]
 degreeDistributionExponent = -2
 commSizeRange = [('big', [20, 100]), ('small', [10, 50])]
 commSizeDistributionExponent = -1
-mus = [x / 10.0 for x in range(1, 10)] #0.1, 0.2,...
+mus = [x / 10.0 for x in range(1, 10)] # 0.1, 0.2,...
 
 random.seed(9182073645)
 setSeed(9182073623, False)
@@ -24,12 +24,19 @@ def gen_and_write_lfr(path):
             for mu in mus:
                 print("({0}, {1}, {2})".format(n, csName,mu))
                 for realization in range(numRealizations):
-                    lfrGen = generators.LFRGenerator(n)
-                    lfrGen.generatePowerlawDegreeSequence(degreeRange[0], degreeRange[1], degreeDistributionExponent)
-                    lfrGen.generatePowerlawCommunitySizeSequence(csRange[0], csRange[1], commSizeDistributionExponent)
-                    lfrGen.setMu(mu)
-                    lfrGen.run()
-                
+                    graph_generated = False
+                    while not graph_generated:
+                        try:
+                            # See https://github.com/networkit/networkit/issues/171
+                            lfrGen = generators.LFRGenerator(n)
+                            lfrGen.generatePowerlawDegreeSequence(degreeRange[0], degreeRange[1], degreeDistributionExponent)
+                            lfrGen.generatePowerlawCommunitySizeSequence(csRange[0], csRange[1], commSizeDistributionExponent)
+                            lfrGen.setMu(mu)
+                            lfrGen.run()
+                            graph_generated = True
+                        except RuntimeError:
+                            pass
+
                     G = lfrGen.getGraph()
 
                     base_path = "{0}{1}-{2}-{3}_{4}".format(path, n, csName, mu, realization)
