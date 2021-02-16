@@ -2,6 +2,9 @@
 
 import matplotlib.pyplot as plt
 import pandas as pd
+import seaborn as sns
+
+sns.set_style('whitegrid')
 
 import evaluate_communities
 import argparse
@@ -11,6 +14,7 @@ from plot_styles import plt_styles, basic_algorithms, clique_algorithms, dashed_
 plt.rc('axes', prop_cycle=plt.cycler('color', ['#e41a1c','#377eb8','#4daf4a','#984ea3','#a65628','#a6cee3','#f781bf', '#ffaa00', '#ff00ff', '#000000'] * 2) +
                         plt.cycler('markeredgecolor', ['#e41a1c','#377eb8','#4daf4a','#984ea3','#a65628','#a6cee3','#f781bf', '#ffaa00', '#ff00ff', '#000000'] * 2) +
                         plt.cycler('marker', list('ovs^+xp*8<>8*px+^svo')))
+plt.rc('xtick', labelsize=8)
     
 plt.rcParams['lines.markersize'] = 5.0
 plt.rcParams['lines.markeredgewidth'] = 1.0
@@ -66,7 +70,6 @@ def plot_stats(data, plt_dir):
 
                     if plot_legend:
                         plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc=3, ncol=5, mode="expand", borderaxespad=0.)
-                    plt.tight_layout()
                     savefigure("{plt_dir}/{measure}_{plot_name}_{err_avg}{legend_suffix}".format(plt_dir=plt_dir, measure=measure, plot_name=plot_name, err_avg=err_avg, legend_suffix=legend_name), pltftypes)
                     plt.close()
 

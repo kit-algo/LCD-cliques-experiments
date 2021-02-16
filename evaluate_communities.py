@@ -1,10 +1,8 @@
 #!/usr/bin/python3
 
 
-from networkit import community, scd
 import pandas as pd
 
-import execute_algorithms
 import operator
 import statistics as stats
 import os
@@ -12,6 +10,8 @@ import pickle
 import argparse
 
 def generate_plot_data(data_directory):
+    from networkit import scd
+    import execute_algorithms
     base_paths = execute_algorithms.get_base_paths(data_directory)
     algNames = list(map(operator.itemgetter(0), execute_algorithms.get_algorithms()))
 
