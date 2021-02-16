@@ -12,28 +12,28 @@ home_path = os.path.expanduser("~")
 code_path = home_path + "/Code"
 
 def genLFR(N, k=20, maxk=50, mu=0.3, t1=2, t2=1, minc=20, maxc=100, on=0, om=0, C=None):
-	args = [code_path + "/binary_networks/benchmark", "-N", N, "-k", k, "-maxk", maxk, "-mu", mu, "-t1", t1, "-t2", t2, "-minc", minc, "-maxc", maxc]
-	if on > 0:
-		args.extend(["-on", on, "-om", om])
-	if C is not None:
-		args.extend(["-C", C])
+    args = [code_path + "/binary_networks/benchmark", "-N", N, "-k", k, "-maxk", maxk, "-mu", mu, "-t1", t1, "-t2", t2, "-minc", minc, "-maxc", maxc]
+    if on > 0:
+        args.extend(["-on", on, "-om", om])
+    if C is not None:
+        args.extend(["-C", C])
 
-	with tempfile.TemporaryDirectory() as tempdir:
-		old_dir = os.getcwd()
-		try:
-			os.chdir(tempdir)
-			with open("time_seed.dat", "w") as f:
-			    f.write(str(random.randint(0, 2**31)))
-			subprocess.call(map(str, args))
-		finally:
-			os.chdir(old_dir)
+    with tempfile.TemporaryDirectory() as tempdir:
+        old_dir = os.getcwd()
+        try:
+            os.chdir(tempdir)
+            with open("time_seed.dat", "w") as f:
+                f.write(str(random.randint(0, 2**31)))
+                subprocess.call(map(str, args))
+        finally:
+            os.chdir(old_dir)
 
-		G = graphio.readGraph(os.path.join(tempdir, "network.dat"), fileformat=graphio.Format.LFR)
-		if on == 0:
-			C = community.readCommunities(os.path.join(tempdir, "community.dat"), format='edgelist-s1')
-		else:
-			C = graphio.EdgeListCoverReader(1).read(os.path.join(tempdir, "community.dat"), G)
-		return (G, C)
+        G = graphio.readGraph(os.path.join(tempdir, "network.dat"), fileformat=graphio.Format.LFR)
+        if on == 0:
+            C = community.readCommunities(os.path.join(tempdir, "community.dat"), format='edgelist-s1')
+        else:
+            C = graphio.EdgeListCoverReader(1).read(os.path.join(tempdir, "community.dat"), G)
+        return (G, C)
 
 # LFR Generator
 numSeedNodes = 20 #10

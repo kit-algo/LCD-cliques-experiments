@@ -1,12 +1,10 @@
 #!/usr/bin/python3
 
-from networkit import graphio, structures
-import glob
 import argparse
 import os
-import random
 import pickle
 import scipy
+from networkit import graphio, structures
 
 if __name__ == "__main__":
     attribute_dict = {
@@ -44,7 +42,7 @@ if __name__ == "__main__":
 
             for u, a in enumerate(matlabObject['local_info'][:,col]):
                 if a > 0:
-                    if not a in value_dict:
+                    if a not in value_dict:
                         b = C.upperBound()
                         value_dict[a] = b
                         C.setUpperBound(b + 1)
@@ -56,7 +54,7 @@ if __name__ == "__main__":
         while len(seeds) < 100:
             u = G.randomNode()
 
-            if len(C.subsetsOf(u)):
+            if len(C.subsetsOf(u)) > 0:
                 seeds.add(u)
 
         base_path = "{0}{1}".format(args.path, gname)
