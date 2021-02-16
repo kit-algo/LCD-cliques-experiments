@@ -43,7 +43,7 @@ def gen_and_write_lfr(path):
                     graphio.writeGraph(G, base_path + ".metis.graph", graphio.Format.METIS)
                     graphio.CoverWriter().write(structures.Cover(lfrGen.getPartition()), base_path + ".cover")
 
-                    seeds = random.sample(G.nodes(), numSeedNodes)
+                    seeds = random.sample(list(G.iterNodes()), numSeedNodes)
                     with open(base_path + ".seeds.pickle", 'wb') as f:
                         pickle.dump(seeds, f)
 
