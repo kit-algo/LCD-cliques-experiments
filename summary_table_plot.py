@@ -8,9 +8,9 @@ import numpy
 
 df = pd.read_pickle("summary_data.pickle")
 for column in df.columns.values:
-    if "weighted" in column and not "unweighted" in column:
-        df.set_value("LocalT", column, numpy.nan)
-        df.set_value("Cl+LocalT", column, numpy.nan)
+    if "weighted" in column and "unweighted" not in column:
+        df.loc["LocalT", column] = numpy.nan
+        df.loc["Cl+LocalT", column] = numpy.nan
 
 ax = seaborn.heatmap(df, annot=True, vmin=0, vmax=1, cmap="BuGn")
 

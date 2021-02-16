@@ -42,9 +42,9 @@ grouped = d.groupby(level=[0, 2])
 avg_d = grouped.mean()
 names = avg_d.loc[(slice(None), "Cl+LTE"), :].sort_values(by="F1-Score - seed", ascending=False)[:10].reset_index().level_0
 
-top_avg = avg_d.ix[names].groupby(level=1).mean()["F1-Score - seed"]
+top_avg = avg_d.loc[names].groupby(level=1).mean()["F1-Score - seed"]
 series_data["Facebook top 10"] = top_avg
 
-df = pd.DataFrame.from_dict(series_data).ix[rows]
+df = pd.DataFrame.from_dict(series_data).loc[rows]
 df.to_pickle("summary_data.pickle")
 
