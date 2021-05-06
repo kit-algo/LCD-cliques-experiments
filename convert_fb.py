@@ -4,7 +4,7 @@ import argparse
 import os
 import pickle
 import scipy
-from networkit import graphio, structures
+from networkit import graphio, structures, graphtools
 
 if __name__ == "__main__":
     attribute_dict = {
@@ -52,7 +52,7 @@ if __name__ == "__main__":
         seeds = set()
 
         while len(seeds) < 100:
-            u = G.randomNode()
+            u = graphtools.randomNode(G)
 
             if len(C.subsetsOf(u)) > 0:
                 seeds.add(u)
