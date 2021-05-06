@@ -25,7 +25,8 @@ if __name__ == "__main__":
     allGraphs = [name[:-4] for name in os.listdir(args.facebook_path) if name[-4:] == ".mat" and name[:-4] != "schools"]
 
     for gname in allGraphs:
-        fileName = "/home/michael/graphs/facebook100/{0}.mat".format(gname)
+        print("Converting {}".format(gname))
+        fileName = "{0}/{1}.mat".format(args.facebook_path, gname)
 
         G = graphio.readMat(fileName, 'A')
 
